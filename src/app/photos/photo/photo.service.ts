@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+
 import { Photo } from './photo';
 
 
@@ -14,9 +15,9 @@ export class PhotoService{
 
     constructor(private http: HttpClient) {}
 
-    listFromUser(userName: string){
+    listFromUser(userName: any){
         
         return this.http
-        .get<Photo[]>(API + '/flavio/photos');
+        .get<Photo[]>(API + '/' + userName + '/photos');
     }
 }

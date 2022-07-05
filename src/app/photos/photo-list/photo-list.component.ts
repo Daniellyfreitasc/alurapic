@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+
+import { Photo } from '../photo/photo';
 import { PhotoService } from '../photo/photo.service';
 
 @Component({
@@ -9,19 +11,20 @@ import { PhotoService } from '../photo/photo.service';
 })
 export class PhotoListComponent implements OnInit {
 
-  photos: any [] = [];
+  photos: Photo [] = [];
   
   
   //nome da variavel "http" e tipagem "HttpClient"
   constructor(
     private photoService: PhotoService,
     private activatedRoute: ActivatedRoute // indica a rota ativada no momento
-    )
-    { }
+  ) { }
     
  ngOnInit(): void {
 
-  const userName =  this.activatedRoute.snapshot.params['userName'];
+  const userName =  this.activatedRoute
+    .snapshot
+    .params['userName'];
 
   this.photoService
     .listFromUser(userName)
