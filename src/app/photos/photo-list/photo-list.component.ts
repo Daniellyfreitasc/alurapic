@@ -12,24 +12,15 @@ import { PhotoService } from '../photo/photo.service';
 export class PhotoListComponent implements OnInit {
 
   photos: Photo [] = [];
-  
+  filter: string = '';
   
   //nome da variavel "http" e tipagem "HttpClient"
-  constructor(
-    private photoService: PhotoService,
-    private activatedRoute: ActivatedRoute // indica a rota ativada no momento
-  ) { }
+  constructor(private activatedRoute: ActivatedRoute) // indica a rota ativada no momento 
+  { }
     
  ngOnInit(): void {
 
-  const userName =  this.activatedRoute
-    .snapshot
-    .params['userName'];
-
-  this.photoService
-    .listFromUser(userName)
-    .subscribe(photos => this.photos = photos);
-    
+    this.photos = this.activatedRoute.snapshot.data['photos'];
  }
 
 }
